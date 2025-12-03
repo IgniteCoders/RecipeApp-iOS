@@ -9,6 +9,14 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    @IBOutlet weak var recipeImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var servingsLabel: UILabel!
+    @IBOutlet weak var dificultyLabel: UILabel!
+    @IBOutlet weak var ingredientsLabel: UILabel!
+    @IBOutlet weak var instructionsLabel: UILabel!
+    
     var recipe: Recipe!
 
     override func viewDidLoad() {
@@ -16,6 +24,13 @@ class DetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.navigationItem.title = recipe.name
+        nameLabel.text = recipe.name
+        ingredientsLabel.text = recipe.ingredients.map { " - \($0)" }.joined(separator: "\n")
+        instructionsLabel.text = recipe.instructions.map { " - \($0)" }.joined(separator: "\n")
+        timeLabel.text = "\(recipe.prepTimeMinutes + recipe.cookTimeMinutes) min"
+        servingsLabel.text = "\(recipe.servings) servings"
+        dificultyLabel.text = recipe.difficulty.uppercased()
+        recipeImageView.loadFrom(url: recipe.image)
     }
     
 
