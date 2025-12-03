@@ -7,11 +7,17 @@
 
 import UIKit
 
-class ListViewController: UIViewController, UITableViewDataSource {
+class ListViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
+    
+    // MARK: Outlets
     
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: Properties
+    
     var recipes: [Recipe] = []
+    
+    // MARK: Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +26,13 @@ class ListViewController: UIViewController, UITableViewDataSource {
         tableView.dataSource = self
         
         findRecipesByName(query: "")
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        self.navigationItem.searchController = searchController
     }
+    
+    // MARK: Buisness Logic
     
     func findRecipesByName(query: String) {
         Task {
@@ -30,6 +42,8 @@ class ListViewController: UIViewController, UITableViewDataSource {
             }
         }
     }
+    
+    // MARK: TableView DataSource
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count
@@ -40,6 +54,32 @@ class ListViewController: UIViewController, UITableViewDataSource {
         let recipe = recipes[indexPath.row]
         cell.render(with: recipe)
         return cell
+    }
+    
+    // MARK: SearchBar Delegate
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        findRecipesByName(query: searchBar.text ?? "")
+    }
+    
+    /*func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            findRecipesByName(query: "")
+        }
+    }*/
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        findRecipesByName(query: "")
+    }
+    
+    // MARK: Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let detailViewController = segue.destination as! DetailViewController
+        let indexPath = tableView.indexPathForSelectedRow!
+        let recipe = recipes[indexPath.row]
+        detailViewController.recipe = recipe
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

@@ -43,12 +43,14 @@
                                         <connections>
                                             <outlet property="nameLabel" destination="hSp-Ku-2wu" id="zLC-3t-GwP"/>
                                             <outlet property="recipeImageView" destination="vMC-s7-whp" id="dhT-O0-b5V"/>
+                                            <segue destination="CKG-9Y-Y8u" kind="show" id="q4R-bz-c2Q"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <keyboardLayoutGuide key="keyboard" id="g96-TJ-3av"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="5Dp-cq-Gbj" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="6fD-qZ-dII"/>
@@ -57,7 +59,7 @@
                             <constraint firstItem="5Dp-cq-Gbj" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="acB-Ns-dYf"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Mis recetas" id="WD3-eU-6jv"/>
+                    <navigationItem key="navigationItem" title="Mis recetas" id="oMS-gY-vNJ"/>
                     <connections>
                         <outlet property="tableView" destination="5Dp-cq-Gbj" id="4o4-wj-qVf"/>
                     </connections>
@@ -65,6 +67,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="831.29770992366412" y="61.971830985915496"/>
+        </scene>
+        <!--Receta-->
+        <scene sceneID="0SV-9X-I2G">
+            <objects>
+                <viewController id="CKG-9Y-Y8u" customClass="DetailViewController" customModule="RecipeApp_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NeI-T9-FIN">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="f1Y-Ug-8zw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Receta" id="AbM-g9-fZl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vHJ-Ik-cfo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1802" y="62"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="i60-ZW-rbQ">
@@ -77,7 +95,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="TLf-14-iUd"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="rfx-QF-pgW"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fWz-NX-ady" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
